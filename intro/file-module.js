@@ -13,6 +13,7 @@ const { readFile, writeFile } = require("fs");
 
 // writeFile("./content/result.txt", "Result content here");
 
+// asynchronous file reading
 readFile("../nodejs-tuts/intro/content/first.txt", "utf8", (err, res) => {
   if (err) {
     console.log(err);
@@ -21,6 +22,7 @@ readFile("../nodejs-tuts/intro/content/first.txt", "utf8", (err, res) => {
 
   const result = res;
 
+  // asynchronous file writing
   writeFile(
     "../nodejs-tuts/intro/content/res.txt",
     `The result of the write operation is: \n \n${result}`,
