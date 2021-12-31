@@ -19,5 +19,13 @@ readFile("../nodejs-tuts/intro/content/first.txt", "utf8", (err, res) => {
     return;
   }
 
-  console.log(res);
+  const result = res;
+
+  writeFile(
+    "../nodejs-tuts/intro/content/res.txt",
+    `The result of the write operation is: \n \n${result}`,
+    (err, res) => {
+      err ? console.log(err) : console.log(res);
+    }
+  );
 });

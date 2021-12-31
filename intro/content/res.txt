@@ -1,0 +1,7 @@
+The result of the write operation is: 
+ 
+first file content
+first file content
+first file content
+first file content
+first file content
