@@ -20,6 +20,7 @@ const server = http.createServer((req, res) => {
     res.end(`
         <h1>ERROR 404...</h1>
         <p>We can't find that page</p>
+        <a href="/">Back home </a>
      `);
   }
 });

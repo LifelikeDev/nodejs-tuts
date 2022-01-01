@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LifelikeDev/nodejs-tuts/issues"
   },
-  "homepage": "https://github.com/LifelikeDev/nodejs-tuts#readme"
+  "homepage": "https://github.com/LifelikeDev/nodejs-tuts#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
