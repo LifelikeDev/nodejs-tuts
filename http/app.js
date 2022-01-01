@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
   if (req.url === "/") {
     res.end(`
         <h1>Welcome to our homepage</h1> 
-        <h3>This is where the journey starts...</h3>
+        <h3>This is where the journey begins...</h3>
     `);
   } else if (req.url === "/about") {
     res.end(`
