@@ -7,8 +7,8 @@ server.on("request", (req, res) => {
         <h1>Http Requests with Event Emitters</h1>
         <h4>This is some response processed with a server using event emitters in node
         </h4>
-        <blockquote>${res.statusCode}</blockquote>
-        <blockquote>${res.statusMessage}</blockquote>
+        <blockquote>Response code: ${res.statusCode}</blockquote>
+        <blockquote>Response message: ${res.statusMessage}</blockquote>
         `);
 });
 
