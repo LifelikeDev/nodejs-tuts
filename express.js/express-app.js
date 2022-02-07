@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
   res.status(200).send(`
     <main style="text-align: center; padding-top: 1rem;">
     <h1>Welcome to the express server</h1> 
-    <h3 >Homepage</h3>
+    <h3>Homepage</h3>
     <p><a href="/about">About page</a></p>
     </main>
     `);
@@ -36,5 +36,5 @@ app.all("*", (req, res) => {
 });
 
 app.listen(portNumber, () => {
-  console.log(`express server running on localhost:${portNumber}`);
+  console.log(`express server running on http://localhost:${portNumber}`);
 });
