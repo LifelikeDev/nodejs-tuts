@@ -12,7 +12,19 @@ app.get("/", (req, res) => {
   //   { name: "Johannesburg", country: "South Africa" },
   // ]);
 
-  res.json(bios);
+  // res.json(bios);
+
+  res.send(`<h1>Home page</h1> <a href="/api/employees">employees</a>`);
+});
+
+app.get("/api/employees", (req, res) => {
+  const info = bios.map((bio) => {
+    const { name, title } = bio;
+
+    return { name, title };
+  });
+
+  res.json(info);
 });
 
 app.listen(port, () => {
