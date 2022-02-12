@@ -34,8 +34,6 @@ app.get(`/api/employees/:employeeId`, (req, res) => {
     return res.status(404).send(`<h3>Sorry. Employee does not exist</h3>`);
   }
 
-  console.log(employeeId);
-
   return res.json(singleEmployee);
 });
 
@@ -49,7 +47,17 @@ app.get("/api/v1/query", (req, res) => {
     searchedBio = searchedBio.filter((bio) => bio.name.match(search));
   }
 
-  res.status(200).json(searchedBio);
+  if (searchedBio.length < 1) {
+    // res.status(200).send(`No employee matched your search...`);
+
+    return res.status(200).json({
+      success: true,
+      data: [],
+      description: "No match for search results",
+    });
+  }
+
+  return res.status(200).json(searchedBio);
 });
 
 // serve app
