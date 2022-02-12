@@ -25,11 +25,18 @@ app.get(`/api/employees/:employeeId`, (req, res) => {
   const {
     params: { employeeId },
   } = req;
-  const { id, name, title } = bios.find((bio) => (bio.id = employeeId));
+  const singleEmployee = bios.find((bio) => bio.id === Number(employeeId));
 
-  res.json({ id, name, title });
+  if (employeeId > bios.length) {
+    return res.status(404).send(`<h3>Sorry. Employee does not exist</h3>`);
+  }
+
+  console.log(employeeId);
+
+  return res.json(singleEmployee);
 });
 
+// serve app
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
