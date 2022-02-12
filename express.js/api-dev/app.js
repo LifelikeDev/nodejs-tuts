@@ -6,7 +6,10 @@ const { people, bios } = require("./data");
 app.get("/", (req, res) => {
   // res.json(bios);
 
-  res.send(`<h1>Home page</h1> <a href="/api/employees">employees</a>`);
+  res.send(`
+    <h1>Home page</h1>
+    <a href="/api/employees">employees</a>
+  `);
 });
 
 // serve destructured content
@@ -20,7 +23,7 @@ app.get("/api/employees", (req, res) => {
   res.json(info);
 });
 
-// find by id
+// path variables
 app.get(`/api/employees/:employeeId`, (req, res) => {
   const {
     params: { employeeId },
@@ -34,6 +37,19 @@ app.get(`/api/employees/:employeeId`, (req, res) => {
   console.log(employeeId);
 
   return res.json(singleEmployee);
+});
+
+// query params
+app.get("/api/v1/query", (req, res) => {
+  const { search } = req.query;
+
+  let searchedBio = [...bios];
+
+  if (search) {
+    searchedBio = searchedBio.filter((bio) => bio.name.match(search));
+  }
+
+  res.status(200).json(searchedBio);
 });
 
 // serve app

@@ -37,6 +37,12 @@ const bios = [
     title: "Svelte Developer",
     description: "playful, responsive, admirable",
   },
+  {
+    id: 6,
+    name: "D. Jean",
+    title: "Database Administrator",
+    description: "cunning, easy-going, lovely",
+  },
 ];
 
 module.exports = { people, bios };
