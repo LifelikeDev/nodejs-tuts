@@ -1,30 +1,23 @@
 const express = require("express");
 const app = express();
 const portNumber = 5000;
+const logger = require("../logger-middleware");
 
 // req => middleware => res
 
-const logger = (req, res, next) => {
-  const props = {
-    method: req.method,
-    url: req.url,
-    time: new Date().getFullYear(),
-  };
+// logger middleware universally available to any other route
+app.use(logger);
 
-  console.log(props.method, props.url, props.time);
-  // sending back your own response
-  // res.send(`middleware at work`);
-
-  // passing it on
-  next();
-};
-
-app.get("/", logger, (req, res) => {
+app.get("/", (req, res) => {
   res.send("Home page");
 });
 
-app.get("/about", logger, (req, res) => {
+app.get("/about", (req, res) => {
   res.send("About");
+});
+
+app.get("/api/people", (req, res) => {
+  res.send("Our Staff");
 });
 
 app.listen(portNumber, () => {
