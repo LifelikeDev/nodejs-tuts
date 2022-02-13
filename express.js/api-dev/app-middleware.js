@@ -1,12 +1,19 @@
 const express = require("express");
 const app = express();
 const portNumber = 5000;
-const logger = require("../logger-middleware");
+const logger = require("../middleware-functions/logger");
+const authorize = require("../middleware-functions/authorize");
 
 // req => middleware => res
 
 // logger middleware universally available to any other route
-app.use(logger);
+// app.use(logger);
+
+// apply middleware to specific routes
+// app.use("/api", logger);
+
+// apply multiple middleware functions
+app.use([authorize, logger]);
 
 app.get("/", (req, res) => {
   res.send("Home page");
