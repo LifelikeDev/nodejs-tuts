@@ -16,7 +16,7 @@ const authorize = require("../middleware-functions/authorize");
 app.use([authorize, logger]);
 
 app.get("/", (req, res) => {
-  res.send("Home page");
+  res.send(`Welcome, ${req.user.name.toUpperCase()}`);
 });
 
 app.get("/about", (req, res) => {
