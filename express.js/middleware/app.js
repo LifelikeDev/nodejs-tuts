@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const portNumber = 5000;
-const logger = require("../middleware-functions/logger");
-const authorize = require("../middleware-functions/authorize");
+const logger = require("./logger");
+const authorize = require("./authorize");
+const morgan = require("morgan");
 
 // req => middleware => res
 
@@ -13,7 +14,10 @@ const authorize = require("../middleware-functions/authorize");
 // app.use("/api", logger);
 
 // apply multiple middleware functions
-app.use([authorize, logger]);
+// app.use([authorize, logger]);
+
+// using a third-party middleware logger
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.send(`Welcome, ${req.user.name.toUpperCase()}`);
