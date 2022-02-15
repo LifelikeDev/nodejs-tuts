@@ -15,6 +15,10 @@ app.get("/another", (req, res) => {
 app.post("/login", (req, res) => {
   const { name } = req.body;
 
+  if (!name) {
+    throw new Error("Please enter an actual name").message;
+  }
+
   res.send(`<h2>Welcome, ${name}</h2>`);
 });
 
