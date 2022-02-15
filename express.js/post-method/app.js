@@ -16,10 +16,14 @@ app.post("/login", (req, res) => {
   const { name } = req.body;
 
   if (!name) {
-    throw new Error("Please enter an actual name").message;
+    // throw new Error("Please enter an actual name").message;
+    res.status(401).json({
+      error: `${res.statusCode}`,
+      message: "Please enter a correct name",
+    });
   }
 
-  res.send(`<h2>Welcome, ${name}</h2>`);
+  res.status(200).send(`<h2>Welcome, ${name}</h2>`);
 });
 
 app.listen(portNumber, () => {
