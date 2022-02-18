@@ -12,6 +12,19 @@ app.use(express.urlencoded({ extended: false }));
 // parse json
 app.use(express.json());
 
+app.post("/login", (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    res.status(401).json({
+      error: `${res.statusCode}`,
+      message: "Please enter a correct name",
+    });
+  }
+
+  res.status(200).send(`<h2>Welcome, ${name}</h2>`);
+});
+
 // get
 app.get("/api/people", (req, res) => {
   res.status(200).json({ success: true, data: people });
@@ -28,21 +41,6 @@ app.post("/api/people", (req, res) => {
   }
 
   return res.status(201).json({ success: true, person: name });
-});
-
-// post
-app.post("/login", (req, res) => {
-  const { name } = req.body;
-
-  if (!name) {
-    // throw new Error("Please enter an actual name").message;
-    res.status(401).json({
-      error: `${res.statusCode}`,
-      message: "Please enter a correct name",
-    });
-  }
-
-  res.status(200).send(`<h2>Welcome, ${name}</h2>`);
 });
 
 // put
