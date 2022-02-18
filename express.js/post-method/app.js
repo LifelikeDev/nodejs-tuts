@@ -12,10 +12,12 @@ app.use(express.urlencoded({ extended: false }));
 // parse json
 app.use(express.json());
 
+// get
 app.get("/api/people", (req, res) => {
   res.status(200).json({ success: true, data: people });
 });
 
+// post
 app.post("/api/people", (req, res) => {
   const { name } = req.body;
 
@@ -28,10 +30,7 @@ app.post("/api/people", (req, res) => {
   return res.status(201).json({ success: true, person: name });
 });
 
-app.get("/another", (req, res) => {
-  res.send(`Hello friend... Welcome!!!`);
-});
-
+// post
 app.post("/login", (req, res) => {
   const { name } = req.body;
 
@@ -46,6 +45,7 @@ app.post("/login", (req, res) => {
   res.status(200).send(`<h2>Welcome, ${name}</h2>`);
 });
 
+// put
 app.put("/api/people/:id", (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -58,7 +58,7 @@ app.put("/api/people/:id", (req, res) => {
       .json({ success: false, message: `Person with ID ${id} not found...` });
   }
 
-  const updatedPeople = people.map((person) => {
+  people.map((person) => {
     if (person.id === Number(id)) {
       person.name = name;
     }
@@ -68,6 +68,24 @@ app.put("/api/people/:id", (req, res) => {
   res.status(200).json({ success: true, data: person });
 });
 
+// delete
+app.delete("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+
+  const person = people.find((person) => person.id === Number(id));
+
+  if (!person) {
+    res
+      .status(401)
+      .json({ success: false, message: `Person with ID ${id} not found` });
+  }
+
+  const newPeople = people.filter((person) => person.id !== Number(id));
+
+  res.status(200).json({ success: true, data: newPeople });
+});
+
+// server listen
 app.listen(portNumber, () => {
   console.log(
     `Server is running successfully on http://localhost:${portNumber}`
