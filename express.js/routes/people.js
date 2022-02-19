@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {
   getPeople,
-  postPerson,
-  putPerson,
+  addPerson,
+  updatePerson,
   deletePerson,
 } = require("../controllers/people");
 
@@ -11,10 +11,10 @@ const {
 router.get("/", getPeople);
 
 // post
-router.post("/", postPerson);
+router.post("/", addPerson);
 
 // put
-router.put("/:id", putPerson);
+router.put("/:id", updatePerson);
 
 // delete
 router.delete("/:id", deletePerson);

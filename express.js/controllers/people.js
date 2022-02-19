@@ -6,7 +6,7 @@ const getPeople = (req, res) => {
 };
 
 // post person
-const postPerson = (req, res) => {
+const addPerson = (req, res) => {
   const { name } = req.body;
 
   if (!name) {
@@ -19,7 +19,7 @@ const postPerson = (req, res) => {
 };
 
 // put person
-const putPerson = (req, res) => {
+const updatePerson = (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
@@ -58,4 +58,4 @@ const deletePerson = (req, res) => {
   res.status(200).json({ success: true, data: newPeople });
 };
 
-module.exports = { getPeople, postPerson, putPerson, deletePerson };
+module.exports = { getPeople, addPerson, updatePerson, deletePerson };
